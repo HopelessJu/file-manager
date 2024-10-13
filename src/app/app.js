@@ -59,7 +59,9 @@ export class App {
     await cmd.deleteFile(fileToDelete);
   }
 
-  os(arg) {}
+  os(arg) {
+    cmd.osInfo(arg);
+  }
 
   async hash(pathToFile) {
     const fileToHash = this._resolvePath(pathToFile);
