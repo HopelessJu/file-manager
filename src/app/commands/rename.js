@@ -6,9 +6,7 @@ export const renameFile = async (oldPathToFile, newPathToFile) => {
   try {
     await isFileExists(oldPathToFile);
     if (!isFileExists(oldPathToFile)) {
-      throw new Error(
-        `${message.operationFailed}: File ${oldPathToFile} not found}`
-      );
+      throw new Error(`File ${oldPathToFile} not found}`);
     }
     await rename(oldPathToFile, newPathToFile);
     console.log(

@@ -3,5 +3,5 @@ export const MESSAGES = {
   twoArgs: "Operation failed. This command requires 2 argument",
   unknown: "Unknown command",
   operationFailed: "Operation failed",
-  permissionDenied: "Please choose a different destination directory.",
+  permissionDenied: "Please provide correct path.",
 };

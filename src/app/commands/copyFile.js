@@ -2,14 +2,13 @@ import fs from "fs";
 import { MESSAGES as message } from "../helpers/messages.js";
 import { isFileExists } from "../helpers/checks.js";
 import path from "path";
+import { pipeline } from "stream/promises";
 
 export const copyFile = async (filePath, newFileDir) => {
   try {
     const fileCheckResult = await isFileExists(filePath);
     if (!fileCheckResult) {
-      throw new Error(
-        `${message.operationFailed}: No such file exists ${filePath}`
-      );
+      throw new Error(`No such file exists ${filePath}`);
     }
     const fileName = path.basename(filePath);
     const destinationPath = path.join(newFileDir, fileName);
@@ -29,6 +28,7 @@ export const copyFile = async (filePath, newFileDir) => {
         reject(error);
       });
     });
+    // await pipeline(readStream, writeStream);
 
     readStream.pipe(writeStream);
     await streamEnd;

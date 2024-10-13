@@ -8,9 +8,7 @@ export const moveFile = async (oldFilePath, newFilePath) => {
   try {
     const fileCheckResult = await isFileExists(oldFilePath);
     if (!fileCheckResult) {
-      throw new Error(
-        `${message.operationFailed}: No such file exists ${oldFilePath}`
-      );
+      throw new Error(` No such file exists ${oldFilePath}`);
     }
     const fileName = path.basename(oldFilePath);
     const destinationPath = path.join(newFilePath, fileName);

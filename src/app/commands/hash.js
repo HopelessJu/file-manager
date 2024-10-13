@@ -8,9 +8,7 @@ export const calcHash = async (fileToHash) => {
   try {
     const fileCheckResult = await isFileExists(fileToHash);
     if (!fileCheckResult) {
-      throw new Error(
-        `${message.operationFailed}: No such file exists ${fileToHash}`
-      );
+      throw new Error(` No such file exists ${fileToHash}`);
     }
     const hash = createHash("sha256");
 

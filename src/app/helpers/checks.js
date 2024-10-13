@@ -22,3 +22,5 @@ export const isFileExists = async (filePath) => {
   }
   return true;
 };
+
+export const allowedBrotliExtensions = [".br", ".gz"];

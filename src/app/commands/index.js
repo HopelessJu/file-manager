@@ -6,3 +6,5 @@ export * from "./copyFile.js";
 export * from "./delete.js";
 export * from "./move.js";
 export * from "./hash.js";
+export * from "./compress.js";
+export * from "./decompress.js";

@@ -66,9 +66,17 @@ export class App {
     await cmd.calcHash(fileToHash);
   }
 
-  compress(pathToFile, pathToCompressedFileDest) {}
+  async compress(pathToFile, pathToCompressedFileDest) {
+    const filePath = this._resolvePath(pathToFile);
+    const destinationPath = this._resolvePath(pathToCompressedFileDest);
+    await cmd.compress(filePath, destinationPath);
+  }
 
-  decompress(pathToCompressedFile, pathToDest) {}
+  async decompress(pathToCompressedFile, pathToDest) {
+    const filePath = this._resolvePath(pathToCompressedFile);
+    const destinationPath = this._resolvePath(pathToDest);
+    await cmd.decompress(filePath, destinationPath);
+  }
 
   async start() {
     const rl = createInterface({
