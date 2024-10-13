@@ -16,25 +16,55 @@ export class App {
     this._currentDir = cmd.goUp(this._currentDir);
   }
 
-  cd(pathToDir) {}
+  async cd(pathFromInput) {
+    const newDir = this._resolvePath(pathFromInput);
+    this._currentDir = await cmd.changeDir(newDir, this._currentDir);
+  }
 
-  ls() {}
+  async ls() {
+    await cmd.ls(this._currentDir);
+  }
 
-  cat(pathToFile) {}
+  async cat(pathFromInput) {
+    const pathToFile = this._resolvePath(pathFromInput);
 
-  add(newFileName) {}
+    await cmd.readFile(pathToFile);
+  }
 
-  rn(pathToFile, newFileName) {}
+  async add(newFileName) {
+    const pathToFile = this._resolvePath(newFileName);
+    await cmd.createFile(pathToFile);
+  }
 
-  cp(pathToFile, pathToNewDir) {}
+  async rn(pathToFile, newFileName) {
+    const oldPathToFile = this._resolvePath(pathToFile);
+    const newPathToFile = this._resolvePath(newFileName);
+    await cmd.renameFile(oldPathToFile, newPathToFile);
+  }
 
-  mv(pathToFile, pathToNewDir) {}
+  async cp(pathToFile, pathToNewDir) {
+    const filePath = this._resolvePath(pathToFile);
+    const newFileDir = this._resolvePath(pathToNewDir);
+    await cmd.copyFile(filePath, newFileDir);
+  }
 
-  rm(pathToFile) {}
+  async mv(pathToFile, pathToNewDir) {
+    const filePath = this._resolvePath(pathToFile);
+    const newFileDir = this._resolvePath(pathToNewDir);
+    await cmd.moveFile(filePath, newFileDir);
+  }
+
+  async rm(pathToFile) {
+    const fileToDelete = this._resolvePath(pathToFile);
+    await cmd.deleteFile(fileToDelete);
+  }
 
   os(arg) {}
 
-  hash(pathToFile) {}
+  async hash(pathToFile) {
+    const fileToHash = this._resolvePath(pathToFile);
+    await cmd.calcHash(fileToHash);
+  }
 
   compress(pathToFile, pathToCompressedFileDest) {}
 
