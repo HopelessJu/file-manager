@@ -6,6 +6,7 @@ export const parseCommand = (input) => {
   return { command, args };
 };
 
+/**parseArgs handles quoted arguments with whitespaces inside  */
 const parseArgs = (args) => {
   const quoteRegEx = /["|']/g;
   if (quoteRegEx.test(args)) {
