@@ -94,6 +94,7 @@ export class App {
         command,
         args
       );
+      console.log(args);
 
       if (command === ".exit") {
         rl.close();

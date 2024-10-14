@@ -2,7 +2,7 @@ import { MESSAGES as message } from "./messages.js";
 
 export const parseCommand = (input) => {
   const [command, ...rest] = input.trim().split(" ");
-  const args = parseArgs(rest.join(" "));
+  const args = rest.join(" ") ? parseArgs(rest.join(" ")) : [];
   return { command, args };
 };
 
