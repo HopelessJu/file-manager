@@ -1,8 +1,21 @@
 import { MESSAGES as message } from "./messages.js";
 
 export const parseCommand = (input) => {
-  const [command, ...args] = input.trim().split(" ");
+  const [command, ...rest] = input.trim().split(" ");
+  const args = parseArgs(rest.join(" "));
   return { command, args };
+};
+
+const parseArgs = (args) => {
+  const quoteRegEx = /["|']/g;
+  if (quoteRegEx.test(args)) {
+    const quotesRegEx = /["']/;
+    return args
+      .split(quotesRegEx)
+      .map((arg) => arg.trim().replace(quoteRegEx, ""))
+      .filter(Boolean);
+  }
+  return args.trim().split(/\s+/);
 };
 
 export const validCommands = [
